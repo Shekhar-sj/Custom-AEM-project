@@ -28,7 +28,7 @@
         <sling.password>admin</sling.password>
         <vault.user>admin</vault.user>
         <vault.password>admin</vault.password>
-        <frontend-maven-plugin.version>1.12.0</frontend-maven-plugin.version>
+        <frontend-maven-plugin.version>1.15.0</frontend-maven-plugin.version>
         <core.wcm.components.version>2.26.0</core.wcm.components.version>
         <bnd.version>6.4.0</bnd.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -36,7 +36,7 @@
         <aem.sdk.api>2025.3.20133.20250325T063357Z-250300</aem.sdk.api>
         <aemanalyser.version>1.6.6</aemanalyser.version>
         <componentGroupName>SSJ Project</componentGroupName>
-        <asset.share.commons.verison>3.10.8</asset.share.commons.verison>
+        <asset.share.commons.verison>3.11.0</asset.share.commons.verison>
     </properties>
     <build>
         <plugins><!-- Maven Release Plugin -->
@@ -72,8 +72,8 @@
                                     <version>[3.3.9,)</version>
                                 </requireMavenVersion>
                                 <requireJavaVersion>
-                                    <message>Maven must be executed with a Java 11 JRE or higher.</message>
-                                    <version>11</version>
+                                    <message>Maven must be executed with a Java 21 JRE or higher.</message>
+                                    <version>[21,)</version>
                                 </requireJavaVersion>
                             </rules>
                         </configuration>
@@ -84,7 +84,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <release>11</release>
+                    <release>21</release>
                 </configuration>
             </plugin>
         </plugins>
@@ -103,8 +103,8 @@
                     <artifactId>frontend-maven-plugin</artifactId>
                     <version>${frontend-maven-plugin.version}</version>
                     <configuration>
-                        <nodeVersion>v16.17.0</nodeVersion>
-                        <npmVersion>8.15.0</npmVersion>
+                        <nodeVersion>v20.10.0</nodeVersion>
+                        <npmVersion>10.2.4</npmVersion>
                     </configuration>
                     <executions>
                         <execution>
@@ -127,7 +127,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
-                    <version>3.1.2</version>
+                    <version>3.2.5</version>
                 </plugin><!-- Maven Clean Plugin -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -267,7 +267,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-enforcer-plugin</artifactId>
-                    <version>3.0.0</version>
+                    <version>3.4.1</version>
                 </plugin><!-- Maven Dependency Plugin -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -352,6 +352,35 @@
                                     <goals>
                                         <goal>install</goal>
                                     </goals>
+                                </execution>
+                            </executions>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+        <profile>
+            <id>autoInstallBundlePublish</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.apache.sling</groupId>
+                            <artifactId>sling-maven-plugin</artifactId>
+                            <executions>
+                                <execution>
+                                    <id>install-bundle</id>
+                                    <goals>
+                                        <goal>install</goal>
+                                    </goals>
+                                    <configuration>
+                                        <slingUrl>http://${aem.publish.host}:${aem.publish.port}/system/console/install</slingUrl>
+                                        <user>${sling.user}</user>
+                                        <password>${sling.password}</password>
+                                    </configuration>
                                 </execution>
                             </executions>
                         </plugin>
@@ -463,7 +492,7 @@
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
-                <version>4.1.0</version>
+                <version>5.14.2</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
