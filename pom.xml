@@ -41,13 +41,15 @@
     <sling.password>admin</sling.password>
     <vault.user>admin</vault.user>
     <vault.password>admin</vault.password>
-    <frontend-maven-plugin.version>1.12.0</frontend-maven-plugin.version>
-    <core.wcm.components.version>2.28.0</core.wcm.components.version>
-    <bnd.version>6.4.0</bnd.version>
+    <frontend-maven-plugin.version>1.15.0</frontend-maven-plugin.version>
+    <core.wcm.components.version>2.30.0</core.wcm.components.version>
+    <bnd.version>7.1.0</bnd.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <aem.sdk.api>2025.8.22171.20250828T220440Z-250800</aem.sdk.api>
     <aemanalyser.version>1.6.6</aemanalyser.version>
+    <acs.commons.version>6.12.0</acs.commons.version>
+    <assetshare.commons.version>3.11.0</assetshare.commons.version>
     <componentGroupName>SSJ Project</componentGroupName>
   </properties>
   <build>
@@ -56,7 +58,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
-        <version>2.5.3</version>
+        <version>3.1.1</version>
         <configuration>
           <scmCommentPrefix>[maven-scm] :</scmCommentPrefix>
           <preparationGoals>clean install</preparationGoals>
@@ -68,7 +70,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
-        <version>3.0.1</version>
+        <version>3.3.1</version>
         <inherited>true</inherited>
       </plugin>
       <!-- Maven Enforcer Plugin -->
@@ -87,8 +89,8 @@
                   <version>[3.3.9,)</version>
                 </requireMavenVersion>
                 <requireJavaVersion>
-                  <message>Maven must be executed with a Java 11 JRE or higher.</message>
-                  <version>11</version>
+                  <message>Maven must be executed with a Java 21 or higher.</message>
+                  <version>21</version>
                 </requireJavaVersion>
               </rules>
             </configuration>
@@ -100,7 +102,7 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <release>11</release>
+          <release>21</release>
         </configuration>
       </plugin>
     </plugins>
@@ -109,7 +111,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-assembly-plugin</artifactId>
-          <version>3.3.0</version>
+          <version>3.7.1</version>
           <configuration>
             <tarLongFileMode>posix</tarLongFileMode>
           </configuration>
@@ -119,8 +121,8 @@
           <artifactId>frontend-maven-plugin</artifactId>
           <version>${frontend-maven-plugin.version}</version>
           <configuration>
-            <nodeVersion>v16.17.0</nodeVersion>
-            <npmVersion>8.15.0</npmVersion>
+            <nodeVersion>v20.10.0</nodeVersion>
+            <npmVersion>10.2.4</npmVersion>
           </configuration>
           <executions>
             <execution>
@@ -144,13 +146,13 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jar-plugin</artifactId>
-          <version>3.1.2</version>
+          <version>3.4.2</version>
         </plugin>
         <!-- Maven Clean Plugin -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-clean-plugin</artifactId>
-          <version>3.0.0</version>
+          <version>3.5.0</version>
         </plugin>
         <!-- BND Maven Plugin -->
         <plugin>
@@ -208,25 +210,25 @@ Bundle-DocURL:
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-resources-plugin</artifactId>
-          <version>3.0.2</version>
+          <version>3.3.1</version>
         </plugin>
         <!-- Maven Compiler Plugin -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.8.1</version>
+          <version>3.14.0</version>
         </plugin>
         <!-- Maven Installer Plugin -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-install-plugin</artifactId>
-          <version>2.5.2</version>
+          <version>3.1.2</version>
         </plugin>
         <!-- Maven Surefire Plugin -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.22.1</version>
+          <version>3.5.3</version>
           <configuration>
             <useSystemClassLoader>false</useSystemClassLoader>
           </configuration>
@@ -235,13 +237,13 @@ Bundle-DocURL:
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-failsafe-plugin</artifactId>
-          <version>2.22.1</version>
+          <version>3.5.3</version>
         </plugin>
         <!-- Maven Deploy Plugin -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-deploy-plugin</artifactId>
-          <version>2.8.2</version>
+          <version>3.1.4</version>
         </plugin>
         <!-- Apache Sling Plugin -->
         <plugin>
@@ -277,6 +279,12 @@ Bundle-DocURL:
                   <cnds>tccl:aem.cnd</cnds>
                 </options>
               </jackrabbit-nodetypes>
+              <!-- Custom Added -->
+              <jackrabbit-packagetype>
+                <options>
+                  <immutableRootNodeNames>apps,libs,oak:index</immutableRootNodeNames>
+                </options>
+              </jackrabbit-packagetype>
             </validatorsSettings>
           </configuration>
           <dependencies>
@@ -310,19 +318,19 @@ Bundle-DocURL:
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-enforcer-plugin</artifactId>
-          <version>3.0.0</version>
+          <version>3.5.0</version>
         </plugin>
         <!-- Maven Dependency Plugin -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-dependency-plugin</artifactId>
-          <version>3.0.0</version>
+          <version>3.8.1</version>
         </plugin>
         <!-- Build Helper Maven Plugin -->
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>build-helper-maven-plugin</artifactId>
-          <version>3.0.0</version>
+          <version>3.6.0</version>
         </plugin>
         <!--This plugin's configuration is used to store Eclipse
                     m2e settings only. It has no influence on the Maven build itself. -->
@@ -422,6 +430,35 @@ Bundle-DocURL:
                   <goals>
                     <goal>install</goal>
                   </goals>
+                </execution>
+              </executions>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+      </build>
+    </profile>
+    <profile>
+      <id>autoInstallBundlePublish</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.apache.sling</groupId>
+              <artifactId>sling-maven-plugin</artifactId>
+              <executions>
+                <execution>
+                  <id>install-bundle</id>
+                  <goals>
+                    <goal>install</goal>
+                  </goals>
+                  <configuration>
+                    <slingUrl>http://${aem.publish.host}:${aem.publish.port}/system/console/install</slingUrl>
+                    <user>${sling.user}</user>
+                    <password>${sling.password}</password>
+                  </configuration>
                 </execution>
               </executions>
             </plugin>
@@ -535,13 +572,13 @@ Bundle-DocURL:
       <dependency>
         <groupId>org.mockito</groupId>
         <artifactId>mockito-core</artifactId>
-        <version>4.1.0</version>
+        <version>5.19.0</version>
         <scope>test</scope>
       </dependency>
       <dependency>
         <groupId>org.mockito</groupId>
         <artifactId>mockito-junit-jupiter</artifactId>
-        <version>4.1.0</version>
+        <version>5.19.0</version>
         <scope>test</scope>
       </dependency>
       <dependency>
@@ -565,7 +602,7 @@ Bundle-DocURL:
       <dependency>
         <groupId>org.apache.sling</groupId>
         <artifactId>org.apache.sling.testing.caconfig-mock-plugin</artifactId>
-        <version>1.4.0</version>
+        <version>1.5.4</version>
         <exclusions>
           <exclusion>
             <groupId>commons-collections</groupId>
@@ -596,6 +633,42 @@ Bundle-DocURL:
         <artifactId>slf4j-test</artifactId>
         <version>1.0.1</version>
         <scope>test</scope>
+      </dependency>
+      <!-- Custom Added -->
+      <!-- ACS AEM Commons -->
+      <dependency>
+        <groupId>com.adobe.acs</groupId>
+        <artifactId>acs-aem-commons-all</artifactId>
+        <classifier>cloud</classifier>
+        <version>${acs.commons.version}</version>
+        <type>zip</type>
+      </dependency>
+      <!-- Asset Share Commons -->
+      <dependency>
+        <groupId>com.adobe.aem.commons</groupId>
+        <artifactId>assetshare.all</artifactId>
+        <version>${assetshare.commons.version}</version>
+        <classifier>cloud</classifier>
+        <type>zip</type>
+      </dependency>
+      <dependency>
+        <groupId>com.adobe.aem.commons</groupId>
+        <artifactId>assetshare.core</artifactId>
+        <version>${assetshare.commons.version}</version>
+        <type>jar</type>
+      </dependency>
+      <dependency>
+        <groupId>com.adobe.aem.commons</groupId>
+        <artifactId>assetshare.core.cloud</artifactId>
+        <version>${assetshare.commons.version}</version>
+        <type>jar</type>
+      </dependency>
+      <!-- Sling Query -->
+      <dependency>
+        <groupId>org.apache.sling</groupId>
+        <artifactId>org.apache.sling.query</artifactId>
+        <version>4.0.4</version>
+        <scope>provided</scope>
       </dependency>
     </dependencies>
   </dependencyManagement>

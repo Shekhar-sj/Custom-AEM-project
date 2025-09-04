@@ -51,6 +51,7 @@
                 <configuration>
                     <group>com.ssjproject</group>
                     <packageType>container</packageType>
+                    <allowIndexDefinitions>true</allowIndexDefinitions><!-- Custom for Asset Share Commons -->
                     <!-- skip sub package validation for now as some vendor packages like CIF apps will not pass -->
                     <skipSubPackageValidation>true</skipSubPackageValidation>
                     <embeddeds>
@@ -76,6 +77,21 @@
                             <artifactId>ssj-project.ui.config</artifactId>
                             <type>zip</type>
                             <target>/apps/ssjproject-packages/application/install</target>
+                        </embedded>
+                        <!-- ACS AEM Commons -->
+                        <embedded>
+                            <artifactId>acs-aem-commons-all</artifactId>
+                            <target>/apps/ssjproject-packages/container/install</target>
+                            <filter>true</filter>
+                            <isAllVersionsFilter>true</isAllVersionsFilter>
+                        </embedded>
+                        <!-- Asset Share Commons Embed-->
+                        <embedded>
+                            <groupId>com.adobe.aem.commons</groupId>
+                            <artifactId>assetshare.all</artifactId>
+                            <classifier>cloud</classifier>
+                            <type>zip</type>
+                            <target>/apps/ssjproject-packages/container/install</target>
                         </embedded>
                     </embeddeds>
                 </configuration>
@@ -196,6 +212,20 @@
             <version>${project.version}</version>
             <type>zip</type>
         </dependency>
-
+        <!-- Custom Added -->
+        <!-- ACS AEM Commons -->
+        <dependency>
+            <groupId>com.adobe.acs</groupId>
+            <artifactId>acs-aem-commons-all</artifactId>
+            <classifier>cloud</classifier>
+            <type>zip</type>
+        </dependency>
+        <!-- Asset Share Commons -->
+        <dependency>
+            <groupId>com.adobe.aem.commons</groupId>
+            <artifactId>assetshare.all</artifactId>
+            <classifier>cloud</classifier>
+            <type>zip</type>
+        </dependency>
     </dependencies>
 </project>
