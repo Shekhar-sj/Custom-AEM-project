@@ -140,16 +140,5 @@ Import-Package: javax.annotation;version=0.0.0,*
             <version>1.4.14</version>
             <scope>test</scope>
         </dependency>
-        <!-- Asset Share Commons APIs -->
-        <dependency>
-            <groupId>com.adobe.aem.commons</groupId>
-            <artifactId>assetshare.core</artifactId>
-            <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>com.adobe.aem.commons</groupId>
-            <artifactId>assetshare.core.cloud</artifactId>
-            <type>jar</type>
-        </dependency>
     </dependencies>
 </project>

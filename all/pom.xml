@@ -49,7 +49,6 @@
                 <artifactId>filevault-package-maven-plugin</artifactId>
                 <extensions>true</extensions>
                 <configuration>
-                    <allowIndexDefinitions>true</allowIndexDefinitions>
                     <group>com.ssjproject</group>
                     <packageType>container</packageType>
                     <!-- skip sub package validation for now as some vendor packages like CIF apps will not pass -->
@@ -75,14 +74,6 @@
                         <embedded>
                             <groupId>com.ssjproject</groupId>
                             <artifactId>ssj-project.ui.config</artifactId>
-                            <type>zip</type>
-                            <target>/apps/ssjproject-packages/application/install</target>
-                        </embedded>
-                        <!-- Embedding Asset Share Commons -->
-                        <embedded>
-                            <groupId>com.adobe.aem.commons</groupId>
-                            <artifactId>assetshare.all</artifactId>
-                            <classifier>cloud</classifier>
                             <type>zip</type>
                             <target>/apps/ssjproject-packages/application/install</target>
                         </embedded>
@@ -205,12 +196,6 @@
             <version>${project.version}</version>
             <type>zip</type>
         </dependency>
-        <!-- Asset Share Commons Dependency -->
-        <dependency>
-            <groupId>com.adobe.aem.commons</groupId>
-            <artifactId>assetshare.all</artifactId>
-            <classifier>cloud</classifier>
-            <type>zip</type>
-        </dependency>
+
     </dependencies>
 </project>

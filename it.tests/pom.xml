@@ -41,14 +41,9 @@
             <version>4.13.2</version>
         </dependency>
         <dependency>
-            <groupId>org.htmlunit</groupId>
-            <artifactId>htmlunit</artifactId>
-            <version>3.10.0</version>
-        </dependency>
-        <dependency>
             <groupId>com.adobe.cq</groupId>
             <artifactId>aem-cloud-testing-clients</artifactId>
-            <version>1.2.6</version>
+            <version>1.2.9</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
