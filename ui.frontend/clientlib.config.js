@@ -65,7 +65,7 @@ module.exports = {
       ...libsBaseConfig,
       name: 'clientlib-site',
       categories: ['ssjproject.site'],
-      dependencies: ['ssjproject.dependencies'],
+      dependencies: ['ssjproject.dependencies', 'asset-share-commons.semantic-ui-light'],
       assets: {
         // Copy entrypoint scripts and stylesheets into the respective ClientLib
         // directories
