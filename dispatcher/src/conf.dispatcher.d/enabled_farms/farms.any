@@ -1,2 +1,4 @@
 ## Include all of the customers *.farm files
-$include "./*.farm"
+## $include "./*.farm"
+$include "../available_farms/asset-share.farm"
+$include "../available_farms/default.farm"
